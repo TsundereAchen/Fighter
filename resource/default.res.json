@@ -1,0 +1,40 @@
+{
+	"groups": [
+		{
+			"keys": "description_json,back_png,start_png,enemy_png,aircraft_png,curtain_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"name": "description_json",
+			"type": "json",
+			"url": "config/description.json"
+		},
+		{
+			"name": "back_png",
+			"type": "image",
+			"url": "assets/images/back.png"
+		},
+		{
+			"name": "start_png",
+			"type": "image",
+			"url": "assets/images/start.png"
+		},
+		{
+			"name": "enemy_png",
+			"type": "image",
+			"url": "assets/images/enemy.png"
+		},
+		{
+			"name": "aircraft_png",
+			"type": "image",
+			"url": "assets/images/aircraft.png"
+		},
+		{
+			"name": "curtain_png",
+			"type": "image",
+			"url": "assets/images/curtain.png"
+		}
+	]
+}

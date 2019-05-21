@@ -1,0 +1,8 @@
+{
+	"autoGenerateExmlsList": true,
+	"exmls": [
+		"resource/assets/res/fighter.exml",
+		"resource/assets/res/gameScene.exml"
+	],
+	"path": "resource/default.thm.json"
+}
