@@ -6,13 +6,19 @@ var AllFighter = (function () {
         //血量
         this.blood = 1;
     }
-    AllFighter.prototype.init = function () {
+    //类型（UP OR DOWN）
+    //public type:string;
+    AllFighter.prototype.Shoot = function () {
         var bullet = new AllBullet();
-        bullet.Img.rotation = 180;
-        bullet.X = this.X - (this.Image.width / 2 - 30);
-        bullet.Y = this.Y + 60;
+        //bullet.type=this.type;
+        bullet.Img = new egret.Bitmap(RES.getRes(this.bulletImage));
+        bullet.Img.width = 50;
+        bullet.Img.height = 50;
+        bullet.Plane = this;
+        bullet.X = this.X + (this.Image.width / 2 - 35);
+        bullet.Y = this.Y - 45;
         bullet.Img.x = bullet.X;
-        bullet.Img.y - bullet.Y;
+        bullet.Img.y = bullet.Y;
         return bullet;
     };
     return AllFighter;

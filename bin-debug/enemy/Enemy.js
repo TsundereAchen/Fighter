@@ -16,18 +16,15 @@ var Enemy = (function (_super) {
     //敌机
     Enemy.prototype.init = function (x, y) {
         var enemy = "enemy_png";
-        var planeIndex = Math.floor(Math.random() * enemy.length);
         var allFighter = new AllFighter();
         var enemyImg = new egret.Bitmap(RES.getRes(enemy));
-        allFighter.blood = 100;
-        allFighter.bulletImage = "bullet_png";
+        allFighter.blood = 1;
         allFighter.Image = enemyImg;
         allFighter.Image.rotation = 180;
         allFighter.Image.x = x + 128;
         allFighter.Image.y = y + 128;
         allFighter.X = allFighter.Image.x;
         allFighter.Y = allFighter.Image.y;
-        allFighter.type = "Donw";
         allFighter.scores = 10;
         return allFighter;
     };

@@ -162,14 +162,6 @@ var Main = (function (_super) {
         });
     };
     /**
-     * 创建场景界面
-     * Create scene interface
-     */
-    Main.prototype.createGameScene = function () {
-        var newBack = new ProjectApi();
-        this.addChild(newBack);
-    };
-    /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
      * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
      */
@@ -205,6 +197,14 @@ var Main = (function (_super) {
             tw.call(change, _this);
         };
         change();
+    };
+    /**
+      * 创建场景界面
+      * Create scene interface
+      */
+    Main.prototype.createGameScene = function () {
+        var newBack = new GameScene();
+        this.addChild(newBack);
     };
     return Main;
 }(eui.UILayer));

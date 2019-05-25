@@ -14,7 +14,7 @@ class AllFighter {
 	//类型（UP OR DOWN）
 	//public type:string;
 
-	public init():AllBullet{
+	public Shoot():AllBullet{
 		var bullet:AllBullet = new AllBullet();
 		//bullet.type=this.type;
 		bullet.Img=new egret.Bitmap(RES.getRes(this.bulletImage));

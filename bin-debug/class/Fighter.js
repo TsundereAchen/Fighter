@@ -17,6 +17,8 @@ var Fighter = (function (_super) {
         var _this = _super.call(this) || this;
         /**图片引用*/
         _this.img = [];
+        /**控制滚动速度 */
+        _this.speed = 3;
         _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.createBitmapByName, _this);
         return _this;
     }
@@ -26,7 +28,8 @@ var Fighter = (function (_super) {
         this.stageH = this.stage.stageHeight;
         var texture = RES.getRes("curtain_png");
         this.textureHeight = texture.textureHeight; //保留原始纹理的高度，用于后续的计算
-        this.rowCount = 2;
+        this.rowCount = Math.ceil(this.stageH / this.textureHeight) + 1;
+        //创建这些图片，并设置y坐标，让它们连接起来
         for (var i = 0; i < this.rowCount; ++i) {
             var ress = new egret.Bitmap();
             var texture = RES.getRes("curtain_png");
@@ -45,7 +48,7 @@ var Fighter = (function (_super) {
     Fighter.prototype.enterFrameHandler = function (event) {
         for (var i = 0; i < this.rowCount; i++) {
             var bgBmp = this.img[i];
-            bgBmp.y += 10;
+            bgBmp.y += this.speed;
             //判断超出屏幕后，回到队首，这样来实现循环反复
             if (bgBmp.y > this.stageH) {
                 bgBmp.y = this.img[0].y - this.textureHeight;
