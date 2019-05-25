@@ -95,14 +95,7 @@ class Main extends eui.UILayer {
     }
 
     private textfield: egret.TextField;
-    /**
-     * 创建场景界面
-     * Create scene interface
-     */
-    protected createGameScene(): void {
-        let newBack = new GameScene();
-        this.addChild(newBack);
-    }
+  
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
      * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
@@ -143,5 +136,13 @@ class Main extends eui.UILayer {
         change();
     }
 
-    
+
+   /**
+     * 创建场景界面
+     * Create scene interface
+     */
+    protected createGameScene(): void {
+        let newBack = new GameScene();
+        this.addChild(newBack);
+    }   
 }

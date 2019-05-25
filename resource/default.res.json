@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "description_json,back_png,start_png,enemy_png,aircraft_png,curtain_png",
+			"keys": "description_json,back_png,start_png,enemy_png,aircraft_png,curtain_png,bullet_png,curtain1_png",
 			"name": "preload"
 		}
 	],
@@ -35,6 +35,16 @@
 			"name": "curtain_png",
 			"type": "image",
 			"url": "assets/images/curtain.png"
+		},
+		{
+			"name": "bullet_png",
+			"type": "image",
+			"url": "assets/images/bullet.png"
+		},
+		{
+			"name": "curtain1_png",
+			"type": "image",
+			"url": "assets/images/curtain1.png"
 		}
 	]
 }

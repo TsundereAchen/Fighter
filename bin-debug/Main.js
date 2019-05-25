@@ -166,7 +166,7 @@ var Main = (function (_super) {
      * Create scene interface
      */
     Main.prototype.createGameScene = function () {
-        var newBack = new GameScene();
+        var newBack = new ProjectApi();
         this.addChild(newBack);
     };
     /**

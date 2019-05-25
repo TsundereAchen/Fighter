@@ -8,12 +8,18 @@
 		"libs/modules/promise/promise.js"
 	],
 	"game": [
+		"bin-debug/class/ProjectApi.js",
 		"bin-debug/AssetAdapter.js",
-		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
 		"bin-debug/ThemeAdapter.js",
-		"bin-debug/game/Fighter.js",
-		"bin-debug/game/GameScene.js"
+		"bin-debug/class/Fighter.js",
+		"bin-debug/LoadingUI.js",
+		"bin-debug/enemy/Enemy.js",
+		"bin-debug/model/AllBullet.js",
+		"bin-debug/model/AllFighter.js",
+		"bin-debug/model/BitmapByName.js",
+		"bin-debug/plane/BigFighter.js",
+		"bin-debug/view/GameScene.js"
 	]
 }
