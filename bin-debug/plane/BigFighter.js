@@ -18,14 +18,13 @@ var BigFighter = (function (_super) {
     }
     BigFighter.prototype.init = function (ts) {
         var allFighter = new AllFighter();
-        var fightImg = new egret.Bitmap();
-        fightImg = RES.getRes("aircraft_png");
+        var fightImg = new egret.Bitmap(RES.getRes("aircraft_png"));
         allFighter.Image = fightImg;
         allFighter.blood = 1;
         allFighter.bulletImage = "bullet_png";
         allFighter.scores = 0;
-        this.Pos(allFighter, ts);
         fightImg.touchEnabled = true;
+        this.Pos(allFighter, ts);
         ts.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.PlaneMoveHandle, [allFighter, ts]);
         ts.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.PlaneMoveHandle, [allFighter, ts]);
         return allFighter;

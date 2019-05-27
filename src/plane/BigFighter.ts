@@ -8,16 +8,15 @@ class BigFighter extends egret.DisplayObjectContainer{
 	}
 
 	public init(ts: egret.DisplayObjectContainer):AllFighter{
-		var allFighter:AllFighter = new AllFighter();
-		var fightImg = new egret.Bitmap();
-		fightImg =  RES.getRes("aircraft_png");
+		var allFighter: AllFighter = new AllFighter();
+		var fightImg = new egret.Bitmap(RES.getRes("aircraft_png"));
 		allFighter.Image = fightImg;
 		allFighter.blood = 1;
 		allFighter.bulletImage="bullet_png";
 		allFighter.scores = 0;
+		fightImg.touchEnabled = true;
 
 		this.Pos(allFighter,ts);
-		fightImg.touchEnabled = true;
 		ts.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.PlaneMoveHandle,[allFighter,ts]);
         ts.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.PlaneMoveHandle,[allFighter,ts]);
 		return allFighter;

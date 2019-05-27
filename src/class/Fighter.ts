@@ -31,8 +31,8 @@ class Fighter extends eui.Component {
 		this.rowCount = Math.ceil(this.stageH/this.textureHeight)+1;
 		//创建这些图片，并设置y坐标，让它们连接起来
 		for(var i:number=0;i < this.rowCount;++i){
-			var ress:egret.Bitmap = new egret.Bitmap();
-			var texture:egret.Texture = RES.getRes("curtain_png");
+			var ress: egret.Bitmap = new egret.Bitmap();
+			var texture: egret.Texture = RES.getRes("curtain_png");
 			ress.texture = texture;
 
 			ress.y = this.textureHeight*i - (this.textureHeight*this.rowCount -this.stageH);

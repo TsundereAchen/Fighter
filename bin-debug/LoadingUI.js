@@ -54,6 +54,9 @@ var LoadingUI = (function (_super) {
     LoadingUI.prototype.onProgress = function (current, total) {
         this.textField.text = "Loading..." + current + "/" + total;
     };
+    LoadingUI.prototype.setCustomProgress = function (current, total, message) {
+        this.textField.text = "[" + message + "]  \u52A0\u8F7D\u4E2D..." + current + "/" + total;
+    };
     return LoadingUI;
 }(egret.Sprite));
 __reflect(LoadingUI.prototype, "LoadingUI", ["RES.PromiseTaskReporter"]);

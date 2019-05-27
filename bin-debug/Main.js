@@ -36,177 +36,269 @@ var __extends = this && this.__extends || function __extends(t, e) {
 for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
 r.prototype = e.prototype, t.prototype = new r();
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this) || this;
+        _this.listResources = new Array(new Resources("preload", "飞机模型"));
+        //己方飞机发射时间间隔
+        _this.myFightTime = new egret.Timer(500);
+        //创建敌机间隔
+        _this.enemyFightTime = new egret.Timer(500);
+        //敌方飞机
+        _this.enemyFights = [];
+        //子弹集合
+        _this.bullet = [];
+        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
+        return _this;
     }
-    Main.prototype.createChildren = function () {
-        _super.prototype.createChildren.call(this);
-        egret.lifecycle.addLifecycleListener(function (context) {
-            // custom lifecycle plugin
-        });
-        egret.lifecycle.onPause = function () {
-            egret.ticker.pause();
-        };
-        egret.lifecycle.onResume = function () {
-            egret.ticker.resume();
-        };
-        //inject the custom material parser
-        //注入自定义的素材解析器
-        var assetAdapter = new AssetAdapter();
-        egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
-        egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
-        this.runGame().catch(function (e) {
-            console.log(e);
-        });
-    };
-    Main.prototype.runGame = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var result, userInfo;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loadResource()];
-                    case 1:
-                        _a.sent();
-                        this.createGameScene();
-                        return [4 /*yield*/, RES.getResAsync("description_json")];
-                    case 2:
-                        result = _a.sent();
-                        this.startAnimation(result);
-                        return [4 /*yield*/, platform.login()];
-                    case 3:
-                        _a.sent();
-                        return [4 /*yield*/, platform.getUserInfo()];
-                    case 4:
-                        userInfo = _a.sent();
-                        console.log(userInfo);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Main.prototype.loadResource = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var loadingView, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 4, , 5]);
-                        loadingView = new LoadingUI();
-                        this.stage.addChild(loadingView);
-                        return [4 /*yield*/, RES.loadConfig("resource/default.res.json", "resource/")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, this.loadTheme()];
-                    case 2:
-                        _a.sent();
-                        return [4 /*yield*/, RES.loadGroup("preload", 0, loadingView)];
-                    case 3:
-                        _a.sent();
-                        this.stage.removeChild(loadingView);
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _a.sent();
-                        console.error(e_1);
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Main.prototype.loadTheme = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            // load skin theme configuration file, you can manually modify the file. And replace the default skin.
-            //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
-            var theme = new eui.Theme("resource/default.thm.json", _this.stage);
-            theme.addEventListener(eui.UIEvent.COMPLETE, function () {
-                resolve();
-            }, _this);
-        });
+    Main.prototype.onAddToStage = function (event) {
+        //设置加载进度界面
+        this.loadingView = new LoadingUI();
+        this.stage.addChild(this.loadingView);
+        //初始化Resource资源加载库
+        RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
+        RES.loadConfig("resource/default.res.json", "resource/");
     };
     /**
-     * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
-     * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
+     * 配置文件加载完成,开始预加载资源组。
      */
-    Main.prototype.createBitmapByName = function (name) {
-        var result = new egret.Bitmap();
-        var texture = RES.getRes(name);
-        result.texture = texture;
-        return result;
+    Main.prototype.onConfigComplete = function (event) {
+        RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
+        RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
+        RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
+        RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
+        RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
+        for (var item in this.listResources) {
+            var list = this.listResources[item];
+            var resources = list;
+            RES.loadGroup(resources.name);
+        }
     };
     /**
-     * 描述文件加载成功，开始播放动画
-     * Description file loading is successful, start to play the animation
+     * Plane资源组加载完成
+     * Preload resource group is loaded
      */
-    Main.prototype.startAnimation = function (result) {
-        var _this = this;
-        var parser = new egret.HtmlTextParser();
-        var textflowArr = result.map(function (text) { return parser.parse(text); });
-        var textfield = this.textfield;
-        var count = -1;
-        var change = function () {
-            count++;
-            if (count >= textflowArr.length) {
-                count = 0;
+    Main.prototype.onResourceLoadComplete = function (event) {
+        var isOver = false;
+        for (var item in this.listResources) {
+            var list = this.listResources[item];
+            var resources = list;
+            if (event.groupName == resources.name) {
+                resources.isOver = true;
             }
-            var textFlow = textflowArr[count];
-            // 切换描述内容
-            // Switch to described content
-            textfield.textFlow = textFlow;
-            var tw = egret.Tween.get(textfield);
-            tw.to({ "alpha": 1 }, 200);
-            tw.wait(2000);
-            tw.to({ "alpha": 0 }, 200);
-            tw.call(change, _this);
-        };
-        change();
+            isOver = resources.isOver;
+        }
+        if (isOver) {
+            this.stage.removeChild(this.loadingView);
+            RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
+            RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
+            RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
+            RES.removeEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
+            //背景
+            this.fight = new Fighter(); //创建可滚动的背景
+            this.addChild(this.fight);
+            this.createGameScene();
+        }
     };
     /**
-      * 创建场景界面
-      * Create scene interface
-      */
+    * 资源组加载出错
+    *  The resource group loading failed
+    */
+    Main.prototype.onItemLoadError = function (event) {
+        console.warn("Url:" + event.resItem.url + " has failed to load");
+    };
+    /**
+     * 资源组加载出错
+     *  The resource group loading failed
+     */
+    Main.prototype.onResourceLoadError = function (event) {
+        //TODO
+        console.warn("Group:" + event.groupName + " has failed to load");
+        //忽略加载失败的项目
+        this.onResourceLoadComplete(event);
+    };
+    /**
+     * Plane资源组加载进度
+     */
+    Main.prototype.onResourceProgress = function (event) {
+        for (var item in this.listResources) {
+            var list = this.listResources[item];
+            var resources = list;
+            if (event.groupName == resources.name) {
+                this.loadingView.setCustomProgress(event.itemsLoaded, event.itemsTotal, resources.chinese);
+            }
+        }
+    };
+    /**
+    * 创建场景界面
+    * Create scene interface
+    */
     Main.prototype.createGameScene = function () {
-        var newBack = new GameScene();
-        this.addChild(newBack);
+        //super();
+        // let gameScene = new GameScene();
+        // this.addChild(gameScene);
+        // if(gameScene.judge()) 
+        this.lastTime = egret.getTimer();
+        this.startGame();
+        //this.start1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.GameScene,this);
+    };
+    Main.prototype.startGame = function () {
+        //this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
+        this.fight.start();
+        //初始化
+        this.myFightTime = new egret.Timer(500);
+        this.enemyFightTime = new egret.Timer(500);
+        var bigFighter = new BigFighter();
+        var plane = bigFighter.init(this);
+        this.addChild(plane.Image);
+        this.addEventListener(egret.Event.ENTER_FRAME, this.gameViewUpdate, this);
+        this.myFight = plane;
+        //主角添加事件
+        this.myFightTime.addEventListener(egret.TimerEvent.TIMER, this.AddMyPlane, [this, plane]);
+        this.myFightTime.start();
+        //敌人添加事件
+        this.enemyFightTime.addEventListener(egret.TimerEvent.TIMER, this.enemyFightersTimerfun, this);
+        this.enemyFightTime.start();
+    };
+    //游戏结束
+    Main.prototype.GameOver = function () {
+        this.myFightTime.stop();
+        this.enemyFightTime.stop();
+        this.myFightTime = null;
+        this.enemyFightTime = null;
+        for (var it in this.enemyFights) {
+            this.removeChild(this.enemyFights[it].Image);
+        }
+        this.enemyFights = [];
+        for (var it in this.bullet) {
+            this.removeChild(this.bullet[it].Img);
+        }
+        this.bullet = [];
+        this.fight.pause();
+        var socre = this.myFight.scores;
+        this.removeChild(this.myFight.Image);
+        this.myFight.Image = null;
+        this.myFight.scores = 0;
+        var over = new egret.Bitmap(RES.getRes("curtain1_png"));
+        var backButton = new egret.Bitmap(RES.getRes("start_png"));
+        var label = new egret.TextField();
+        label.text = socre + "分";
+        label.x = this.stage.stageWidth / 2 - label.width / 2;
+        label.y = this.stage.stageHeight / 2;
+        backButton.x = this.stage.stageWidth / 2 - backButton.width / 2;
+        backButton.y = (this.stage.stageHeight / 2) + 80;
+        var mapthis = this;
+        backButton.touchEnabled = true;
+        backButton.addEventListener(egret.TouchEvent.TOUCH_TAP, function (evt) {
+            mapthis.lastTime = 0;
+            mapthis.removeChild(over);
+            mapthis.removeChild(label);
+            mapthis.removeChild(backButton);
+            //mapthis.start.apply(mapthis);
+        }, this);
+        this.addChild(over);
+        this.addChild(label);
+        this.addChild(backButton);
+    };
+    //添加主角事件
+    Main.prototype.AddMyPlane = function () {
+        var bullet1 = this[1].Shoot();
+        this[0].bullet.push(bullet1);
+        this[0].addChild(bullet1.Img);
+    };
+    //加入敌军
+    Main.prototype.enemyFightersTimerfun = function () {
+        var enemyplaneClass = new Enemy();
+        var x = Math.random() * (this.stage.width - 110); //随机坐标
+        var enemyplane = enemyplaneClass.init(x, -110);
+        this.enemyFights.push(enemyplane);
+        this.addChild(enemyplane.Image);
+        var bullet1 = enemyplane.Shoot();
+        this.bullet.push(bullet1);
+        this.addChild(bullet1.Img);
+    };
+    /*飞机碰撞检测*/
+    Main.prototype.collision = function () {
+        var bullet1 = this.bullet;
+        var enemyplane = this.enemyFights;
+        var myPlane = this.myFight;
+        for (var i in bullet1) {
+            if (bullet1[i].Plane.Image != myPlane.Image) {
+                if (myPlane.Image != null) {
+                    //计算显示对象,以确定它是否与 x 和 y 参数指定的点重叠或相交。
+                    var isHi = myPlane.Image.hitTestPoint(bullet1[i].X, bullet1[i].Y - 40, true);
+                    if (isHi) {
+                        bullet1.splice(bullet1.indexOf(bullet1[i]), 1);
+                        this.removeEventListener(egret.Event.ENTER_FRAME, this.gameViewUpdate, this);
+                        this.GameOver.apply(this);
+                        return;
+                    }
+                }
+            }
+            else {
+                for (var l in enemyplane) {
+                    if (this.myFight != null) {
+                        var myHit = enemyplane[l].Image.hitTestPoint(this.myFight.X, this.myFight.Y, true);
+                        if (myHit) {
+                            this.removeEventListener(egret.Event.ENTER_FRAME, this.gameViewUpdate, this);
+                            this.GameOver.apply(this);
+                            return;
+                        }
+                    }
+                    var isHit = enemyplane[l].Image.hitTestPoint(bullet1[i].X, bullet1[i].Y, true);
+                    if (isHit) {
+                        this.removeChild(bullet1[i].Img);
+                        bullet1.splice(bullet1.indexOf(bullet1[i]), 1);
+                        this.removeChild(enemyplane[l].Image);
+                        enemyplane.splice(enemyplane.indexOf(enemyplane[l]), 1);
+                        this.myFight.scores += 10;
+                    }
+                }
+            }
+        }
+    };
+    //游戏画面更新
+    Main.prototype.gameViewUpdate = function () {
+        //为了防止FPS下降造成回收慢，生成快，进而导致DRAW数量失控，需要计算一个系数，当FPS下降的时候，让运动速度加快
+        var nowTime = egret.getTimer();
+        var fps = 1000 / (nowTime - (this.lastTime));
+        this.lastTime = nowTime;
+        var speedOffset = 60 / fps;
+        /*
+        * 统一子弹管理
+        */
+        var i = 0;
+        var bullet1;
+        var bulletCount = this.bullet.length;
+        for (i = 0; i < bulletCount; ++i) {
+            bullet1 = this.bullet[i];
+            if (bullet1.Y - bullet1.Img.height > this.stage.stageHeight) {
+                this.removeChild(bullet1.Img);
+                this.bullet.splice(i, 1);
+                i--;
+                bulletCount--;
+                bullet1.Y -= 7 * speedOffset;
+                bullet1.Img.y -= 7 * speedOffset;
+            }
+        }
+        //敌机飞行
+        var theFighter;
+        var enemyplaneCount = this.enemyFights.length;
+        for (i = 0; i < enemyplaneCount; ++i) {
+            theFighter = this.enemyFights[i];
+            if (theFighter.Y - theFighter.Image.height > this.stage.stageHeight) {
+                this.removeChild(theFighter.Image);
+                this.enemyFights.splice(i, 1);
+                i--;
+                enemyplaneCount--;
+            }
+            theFighter.Y += 3 * speedOffset;
+            theFighter.Image.y += 3 * speedOffset;
+        }
+        this.collision();
     };
     return Main;
-}(eui.UILayer));
+}(egret.DisplayObjectContainer));
 __reflect(Main.prototype, "Main");
 //# sourceMappingURL=Main.js.map

@@ -15,10 +15,11 @@
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/class/Fighter.js",
 		"bin-debug/LoadingUI.js",
-		"bin-debug/model/AllBullet.js",
-		"bin-debug/model/AllFighter.js",
-		"bin-debug/model/BitmapByName.js",
-		"bin-debug/plane/BigFighter.js",
+		"bin-debug/Model/AllBullet.js",
+		"bin-debug/Model/AllFighter.js",
+		"bin-debug/Model/BitmapByName.js",
+		"bin-debug/Model/Resources.js",
+		"bin-debug/Plane/BigFighter.js",
 		"bin-debug/view/GameScene.js"
 	]
 }
