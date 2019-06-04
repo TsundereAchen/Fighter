@@ -147,7 +147,9 @@ var Main = (function (_super) {
         //this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
         this.fight.start();
         //初始化
+        /**己方飞机发射时间间隔 */
         this.myFightTime = new egret.Timer(500);
+        /**敌机发射间隔 */
         this.enemyFightTime = new egret.Timer(500);
         var bigFighter = new BigFighter();
         var plane = bigFighter.init(this);
@@ -195,7 +197,7 @@ var Main = (function (_super) {
             mapthis.removeChild(over);
             mapthis.removeChild(label);
             mapthis.removeChild(backButton);
-            //mapthis.start.apply(mapthis);
+            mapthis.startGame.apply(mapthis);
         }, this);
         this.addChild(over);
         this.addChild(label);
@@ -278,9 +280,9 @@ var Main = (function (_super) {
                 this.bullet.splice(i, 1);
                 i--;
                 bulletCount--;
-                bullet1.Y -= 7 * speedOffset;
-                bullet1.Img.y -= 7 * speedOffset;
             }
+            bullet1.Y -= 5 * speedOffset;
+            bullet1.Img.y -= 5 * speedOffset;
         }
         //敌机飞行
         var theFighter;

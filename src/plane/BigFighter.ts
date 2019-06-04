@@ -14,9 +14,9 @@ class BigFighter extends egret.DisplayObjectContainer{
 		allFighter.blood = 1;
 		allFighter.bulletImage="bullet_png";
 		allFighter.scores = 0;
-		fightImg.touchEnabled = true;
 
 		this.Pos(allFighter,ts);
+		fightImg.touchEnabled = true;
 		ts.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.PlaneMoveHandle,[allFighter,ts]);
         ts.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.PlaneMoveHandle,[allFighter,ts]);
 		return allFighter;
@@ -47,14 +47,14 @@ class BigFighter extends egret.DisplayObjectContainer{
 		plane.Y=plane.Image.y;
 	}
 	//初始位置
-	public Pos(plane:AllFighter,ds:egret.DisplayObject):void{
+	public Pos(plane: AllFighter,ds: egret.DisplayObject):void{
 		var mapH = ds.stage.stageWidth;   
 		var mapW = ds.stage.stageHeight;  //
 		var h = plane.Image.height;
 		var w = plane.Image.width;
 		plane.X=(mapH/2)-(plane.Image.width/2);
 		plane.Y=mapW-plane.Image.height;
-		plane.Image.x=plane.X;
-		plane.Image.y=plane.Y;
+		plane.Image.x=(mapH/2)-(plane.Image.width/2);
+		plane.Image.y=mapW-plane.Image.height;
 	}
 }

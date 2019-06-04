@@ -178,7 +178,9 @@ class Main extends egret.DisplayObjectContainer {
         //this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
         this.fight.start();
         //初始化
+        /**己方飞机发射时间间隔 */
         this.myFightTime=new egret.Timer(500);
+        /**敌机发射间隔 */
         this.enemyFightTime=new egret.Timer(500);
         
         var bigFighter = new BigFighter();
@@ -201,6 +203,7 @@ class Main extends egret.DisplayObjectContainer {
     private GameOver(): void{
        this.myFightTime.stop();
        this.enemyFightTime.stop();
+
        this.myFightTime=null;
        this.enemyFightTime=null;
        for(var it in this.enemyFights){
@@ -234,7 +237,7 @@ class Main extends egret.DisplayObjectContainer {
             mapthis.removeChild(over);
             mapthis.removeChild(label);
             mapthis.removeChild(backButton);
-            //mapthis.start.apply(mapthis);
+            mapthis.startGame.apply(mapthis);
         },this);
         this.addChild(over);
         this.addChild(label);
@@ -318,16 +321,19 @@ class Main extends egret.DisplayObjectContainer {
         var i:number=0;
         var bullet1:AllBullet;
         var bulletCount:number=this.bullet.length;
-        for(i=0;i<bulletCount;++i){
+        for(i=0;i<bulletCount;++i) {
+           
             bullet1 = this.bullet[i];
+         
            if(bullet1.Y - bullet1.Img.height > this.stage.stageHeight){
                this.removeChild(bullet1.Img);
                this.bullet.splice(i,1);
                i--;
                bulletCount--;
-               bullet1.Y -= 7 * speedOffset;
-                bullet1.Img.y -= 7 * speedOffset;
+              
            }
+            bullet1.Y -= 5 * speedOffset;
+            bullet1.Img.y -= 5 * speedOffset;
         }
 
         //敌机飞行

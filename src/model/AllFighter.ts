@@ -22,8 +22,11 @@ class AllFighter {
 		bullet.Img.height=50;
 		bullet.Plane=this;
 
-		bullet.X=this.X+(this.Image.width/2-35);
-		bullet.Y=this.Y-45;
+		if(this.Image!=null){
+			bullet.X=this.X+(this.Image.width/2-35);
+			bullet.Y=this.Y-45;
+		}
+	
 
 		bullet.Img.x=bullet.X;
 		bullet.Img.y=bullet.Y;

@@ -23,8 +23,8 @@ var BigFighter = (function (_super) {
         allFighter.blood = 1;
         allFighter.bulletImage = "bullet_png";
         allFighter.scores = 0;
-        fightImg.touchEnabled = true;
         this.Pos(allFighter, ts);
+        fightImg.touchEnabled = true;
         ts.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.PlaneMoveHandle, [allFighter, ts]);
         ts.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.PlaneMoveHandle, [allFighter, ts]);
         return allFighter;
@@ -62,8 +62,8 @@ var BigFighter = (function (_super) {
         var w = plane.Image.width;
         plane.X = (mapH / 2) - (plane.Image.width / 2);
         plane.Y = mapW - plane.Image.height;
-        plane.Image.x = plane.X;
-        plane.Image.y = plane.Y;
+        plane.Image.x = (mapH / 2) - (plane.Image.width / 2);
+        plane.Image.y = mapW - plane.Image.height;
     };
     return BigFighter;
 }(egret.DisplayObjectContainer));
