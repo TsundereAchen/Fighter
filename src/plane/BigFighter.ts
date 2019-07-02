@@ -30,21 +30,20 @@ class BigFighter extends egret.DisplayObjectContainer{
 		var h = plane.Image.height;
 		var w = plane.Image.width;
 		plane.Image.x=e.stageX-(w/2);
-		plane.Image.y=e.stageY-(h/2);
 		if(plane.Image.x<=0){
 			plane.Image.x=0;
 		}
 		if(e.stageX+w/2>=p.stage.stageWidth){
-			plane.Image.x = p.stage.stageWidth;
+			plane.Image.x = p.stage.stageWidth-100;
 		}
-		if(plane.Image.y<=0){
-			plane.Image.y=p.stage.stageHeight-w;
-		}
-		if(e.stageY+h/2>=p.stage.stageHeight){
-			plane.Image.y=p.stage.stageHeight-h;
-		}
+		// if(plane.Image.y<=0){
+		// 	plane.Image.y=p.stage.stageHeight-w;
+		// }
+		// if(e.stageY+h/2>=p.stage.stageHeight){
+		// 	plane.Image.y=p.stage.stageHeight-h;
+		// }
 		plane.X=plane.Image.x;
-		plane.Y=plane.Image.y;
+		// plane.Y=plane.Image.y;
 	}
 	//初始位置
 	public Pos(plane: AllFighter,ds: egret.DisplayObject):void{

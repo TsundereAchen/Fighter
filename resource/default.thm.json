@@ -2,7 +2,7 @@
 	"autoGenerateExmlsList": true,
 	"exmls": [
 		"resource/assets/res/fighter.exml",
-		"resource/assets/res/gameScene.exml"
+		"resource/assets/res/GameScene.exml"
 	],
 	"path": "resource/default.thm.json"
 }

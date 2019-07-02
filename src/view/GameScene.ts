@@ -6,7 +6,7 @@ class GameScene extends eui.Component{
     public number1:number=0;
     public constructor(){
         super();
-        this.skinName="resource/assets/res/gameScene.exml";
+        this.skinName="resource/assets/res/GameScene.exml";
         //this.lastTime = egret.getTimer();
         this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.GameScene,this);
     }  

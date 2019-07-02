@@ -18,6 +18,7 @@ class Fighter extends eui.Component {
 
 	public constructor() {
 		super();
+		
 		this.addEventListener(egret.Event.ADDED_TO_STAGE,this.createBitmapByName,this);
 	}
 
@@ -33,9 +34,10 @@ class Fighter extends eui.Component {
 		for(var i:number=0;i < this.rowCount;++i){
 			var ress: egret.Bitmap = new egret.Bitmap();
 			var texture: egret.Texture = RES.getRes("curtain_png");
+			
 			ress.texture = texture;
-
 			ress.y = this.textureHeight*i - (this.textureHeight*this.rowCount -this.stageH);
+			
 			this.img.push(ress);
 			this.addChild(ress);
 		}

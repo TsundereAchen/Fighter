@@ -182,10 +182,12 @@ var Main = (function (_super) {
         this.removeChild(this.myFight.Image);
         this.myFight.Image = null;
         this.myFight.scores = 0;
-        var over = new egret.Bitmap(RES.getRes("curtain1_png"));
+        var over = new egret.Bitmap(RES.getRes("curtain_png"));
         var backButton = new egret.Bitmap(RES.getRes("start_png"));
         var label = new egret.TextField();
         label.text = socre + "分";
+        console.log("this.stage.x: " + this.stage.stageWidth);
+        console.log("this.stage.y" + this.stage.stageHeight);
         label.x = this.stage.stageWidth / 2 - label.width / 2;
         label.y = this.stage.stageHeight / 2;
         backButton.x = this.stage.stageWidth / 2 - backButton.width / 2;

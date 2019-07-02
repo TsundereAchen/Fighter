@@ -16,7 +16,7 @@ var GameScene = (function (_super) {
     function GameScene() {
         var _this = _super.call(this) || this;
         _this.number1 = 0;
-        _this.skinName = "resource/assets/res/gameScene.exml";
+        _this.skinName = "resource/assets/res/GameScene.exml";
         //this.lastTime = egret.getTimer();
         _this.addEventListener(egret.TouchEvent.TOUCH_TAP, _this.GameScene, _this);
         return _this;
